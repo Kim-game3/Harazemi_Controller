@@ -1,43 +1,43 @@
-// Unity‚ÅƒVƒŠƒAƒ‹’ÊM‚Å‘—‚ç‚ê‚Ä‚­‚éƒf[ƒ^‚ğƒfƒR[ƒh‚·‚é—Œ`
-// 2025_8ŒVer.
+// Unityï¿½ÅƒVï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ÊMï¿½Å‘ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½ï¿½fï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½é—ï¿½`
+// 2025_8ï¿½ï¿½Ver.
 
 
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DoSomething : MonoBehaviour
 {
-    // §Œä‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg—p‚ÉéŒ¾‚µ‚Ä‚¨‚¢‚ÄAStartŠÖ”“à‚Å–¼‘O‚ÅŒŸõ
+    // ï¿½ï¿½ï¿½ï¿½ÎÛ‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½pï¿½ÉéŒ¾ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ÄAStartï¿½Öï¿½ï¿½ï¿½Å–ï¿½ï¿½Oï¿½ÅŒï¿½ï¿½ï¿½
     GameObject targetObject;
 
-    // §Œä‘ÎÛ‚ÉƒAƒ^ƒbƒ`‚³‚ê‚½ƒXƒNƒŠƒvƒg
-    //Player targetScript; // ‚±‚Ì‹Lq‚Å‚ÍƒAƒ^ƒbƒ`‚·‚éGameObject‚ÉPlayerƒXƒNƒŠƒvƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é
+    // ï¿½ï¿½ï¿½ï¿½ÎÛ‚ÉƒAï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ê‚½ï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½g
+    //Player targetScript; // ï¿½ï¿½ï¿½Ì‹Lï¿½qï¿½Å‚ÍƒAï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½GameObjectï¿½ï¿½Playerï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     GameObject harazemichanObject;
 
-    // ƒVƒŠƒAƒ‹’ÊM‚ÌƒNƒ‰ƒXAƒNƒ‰ƒX–¼‚Í³‚µ‚­‘‚­‚±‚Æ
+    // ï¿½Vï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ÊMï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½Aï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public SerialHandler serialHandler;
 
     void Start()
     {
-        // §Œä‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ğæ“¾A‚±‚ÌƒIƒuƒWƒFƒNƒg‚ÉMain.cs‚ªŠÖ˜A•t‚¯‚ç‚ê‚Ä‚¢‚é
-        targetObject = GameObject.Find("PlayerObject"); // ‚±‚Ì‹Lq‚Å‚ÍUnity‚ÌƒqƒGƒ‰ƒ‹ƒL[‚ÉGameMasterƒIƒuƒWƒFƒNƒg‚ª‚¢‚é•K—v‚ª‚ ‚éB
+        // ï¿½ï¿½ï¿½ï¿½ÎÛ‚ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½æ“¾ï¿½Aï¿½ï¿½ï¿½ÌƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½Main.csï¿½ï¿½ï¿½Ö˜Aï¿½tï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
+        targetObject = GameObject.Find("PlayerObject"); // ï¿½ï¿½ï¿½Ì‹Lï¿½qï¿½Å‚ï¿½Unityï¿½Ìƒqï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½ï¿½GameMasterï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 
-        // §Œä‘ÎÛ‚ÉƒAƒ^ƒbƒ`‚³‚ê‚½ƒXƒNƒŠƒvƒg‚ğæ“¾B
-        // ‘å•¶šA¬•¶š‚ğ‹æ•Ê‚·‚é‚Ì‚ÅAplayer.cs‚ğì‚Á‚½‚Ì‚È‚çupvlayerB
-        //targetScript = targetObject.GetComponent<Player>(); // PlayerƒXƒNƒŠƒvƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚é•K—v‚ª‚ ‚é
+        // ï¿½ï¿½ï¿½ï¿½ÎÛ‚ÉƒAï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ê‚½ï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½æ“¾ï¿½B
+        // ï¿½å•¶ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½ï¿½Ì‚ÅAplayer.csï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚È‚ï¿½upï¿½vlayerï¿½B
+        //targetScript = targetObject.GetComponent<Player>(); // Playerï¿½Xï¿½Nï¿½ï¿½ï¿½vï¿½gï¿½ï¿½ï¿½Aï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
         harazemichanObject = GameObject.Find("harazemi_chan025_chara");
 
-        // M†óM‚ÉŒÄ‚Î‚ê‚éŠÖ”‚Æ‚µ‚ÄOnDataReceivedŠÖ”‚ğ“o˜^
+        // ï¿½Mï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ÉŒÄ‚Î‚ï¿½ï¿½Öï¿½ï¿½Æ‚ï¿½ï¿½ï¿½OnDataReceivedï¿½Öï¿½ï¿½ï¿½oï¿½^
         serialHandler.OnDataReceived += OnDataReceived;
     }
 
     void Update()
     {
-        // Unity‚©‚çArduino‚É‘—‚éê‡‚ÍƒRƒR‚É‹Lq
-        //SerialHandler.Write("")‚ğg‚¤
+        // Unityï¿½ï¿½ï¿½ï¿½Arduinoï¿½É‘ï¿½ï¿½ï¿½ê‡ï¿½ÍƒRï¿½Rï¿½É‹Lï¿½q
+        //SerialHandler.Write("")ï¿½ï¿½gï¿½ï¿½
         if (targetScript.jklPress[0])
         {
             targetScript.jklPress[0] = false;
@@ -126,13 +126,13 @@ public class DoSomething : MonoBehaviour
         }
     }
 
-    //óM‚µ‚½M†(message)‚É‘Î‚·‚éˆ—
+    //ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½(message)ï¿½É‘Î‚ï¿½ï¿½éˆï¿½ï¿½
     void OnDataReceived(string message)
     {
         if (message == null)
             return;
 
-        // ‚±‚±‚ÅƒfƒR[ƒhˆ—“™‚ğ‹Lq
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Åƒfï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½q
         string receivedData;
         int t;
 
@@ -158,4 +158,4 @@ public class DoSomething : MonoBehaviour
 
         
     }
-}
+}*/
