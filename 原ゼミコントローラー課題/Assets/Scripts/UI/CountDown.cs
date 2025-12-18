@@ -101,8 +101,8 @@ public class CountDown : MonoBehaviour
 
         for(int i = Countdown_Second; i > 0; i--)
         {
-            Countdown_Text.text = i.ToString();
-            yield return new WaitForSeconds(1.0f);
+                Countdown_Text.text = i.ToString();
+                yield return new WaitForSeconds(1.0f);
         }
 
         Countdown_Text.gameObject.SetActive(false);

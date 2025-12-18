@@ -190,7 +190,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 87722015}
+    m_TransformParent: {fileID: 1464465747}
     m_Modifications:
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_Pivot.x
@@ -218,23 +218,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1751
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1087.5
+      value: 37.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.16666667
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.16666667
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.16666667
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -266,11 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -208.5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 112.41667
+      value: -18.750015
       objectReference: {fileID: 0}
     - target: {fileID: 4750016290811683487, guid: 24fc5ff667a96a14eab0aa8263d990b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -792,6 +792,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5900417107289289829, guid: 9a8f18b1c0504ef43a2fa96e0451381e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 87722015}
+    - targetCorrespondingSourceObject: {fileID: 5900417107289289829, guid: 9a8f18b1c0504ef43a2fa96e0451381e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1731067647}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8f18b1c0504ef43a2fa96e0451381e, type: 3}
 --- !u!1001 &925427817
@@ -1169,10 +1172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7350993966989271396, guid: 5c6b4c86bcad7d646b49e5de41fdade7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1731067647}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c6b4c86bcad7d646b49e5de41fdade7, type: 3}
 --- !u!1 &1431763860 stripped
@@ -1441,11 +1441,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7218557306757365693, guid: 00e16ec5045d72d4c9edebc3709902bc, type: 3}
       propertyPath: m_margin.w
-      value: 5.5233555
+      value: -70.6333
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218557306757365693, guid: 00e16ec5045d72d4c9edebc3709902bc, type: 3}
+      propertyPath: m_margin.x
+      value: -141.09845
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218557306757365693, guid: 00e16ec5045d72d4c9edebc3709902bc, type: 3}
+      propertyPath: m_margin.y
+      value: -63.713562
       objectReference: {fileID: 0}
     - target: {fileID: 7218557306757365693, guid: 00e16ec5045d72d4c9edebc3709902bc, type: 3}
       propertyPath: m_margin.z
-      value: 163.26587
+      value: 25.465912
       objectReference: {fileID: 0}
     - target: {fileID: 7218557306757365693, guid: 00e16ec5045d72d4c9edebc3709902bc, type: 3}
       propertyPath: m_fontSizeBase
@@ -2007,7 +2015,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: harazemi_chan025_chara
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7099276592625422592, guid: 0381a72c6d465df4baf62e30d0b9566f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4409aeb20ebd93049bec5fc061ed6a4a, type: 2}
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

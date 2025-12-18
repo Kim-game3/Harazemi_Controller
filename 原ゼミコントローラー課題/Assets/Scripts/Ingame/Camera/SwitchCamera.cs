@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*カメラを切り替えるスクリプト。現在はボタンで切り替えているが、指定秒数経過したら切り替えるというものにしたい*/
 public class SwitchCamera : MonoBehaviour
 {
     [Tooltip("カメラを格納する配列")]

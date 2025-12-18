@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: harazemi_chan025_chara
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1b3ea814466c0c24cbd46c59acbf27f0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4409aeb20ebd93049bec5fc061ed6a4a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
