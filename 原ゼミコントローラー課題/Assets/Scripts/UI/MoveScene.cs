@@ -4,68 +4,53 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SwitchCamera : MonoBehaviour
+public class MoveScene : MonoBehaviour
 {
-    [Tooltip("カメラを格納する配列")]
-    [SerializeField] GameObject[] Cameras;
+    [Tooltip("遷移先のシーン名")]
+    [SerializeField] string Scene_Name;
 
-    [Tooltip("切り替えた時のフェードイン/アウトにかかる時間")]
-    [SerializeField] private float Fade_duration;
-
-    private int Camera_index;
-
-    private bool Is_Switching;
+    [Tooltip("遷移にかかる時間(ロード時間)")]
+    [SerializeField] float Load_Time;
 
     private GameObject Fade_Object;
     private Image Fade_Image;
 
     private Canvas CurrentCanvas;
 
-    private void Awake()
+    private void Start()
     {
-        Camera_index = 0;
-
-        for (int i = 0; i < Cameras.Length; i++)
+        var fade = GameObject.Find("Fade_Object");
+        
+        if(fade == null)
         {
-            Cameras[i].gameObject.SetActive(i == Camera_index);
+            Initialize_Fade();
         }
-
-        Initialize_Fade();
     }
 
-    public void Switch_Camera()
+    public void Move_Scene()
     {
-        if(Is_Switching || Cameras == null || Cameras.Length == 0)
-        {
-            Debug.LogError("ぬるぽ");
-            return;
-        }
-        StartCoroutine(SwitchRoutine());
+        StartCoroutine(moveScene());
     }
 
-    private IEnumerator SwitchRoutine()
+    private IEnumerator moveScene()
     {
-        Is_Switching = true;
+        yield return StartCoroutine(FadeTo(1f, Load_Time));
+        SceneManager.LoadScene(Scene_Name);
+    }
 
-        yield return StartCoroutine(FadeTo(1f, Fade_duration));
+    public IEnumerator Move_MaintoResult()
+    {
+        yield return StartCoroutine(FadeTo(1f, Load_Time));
+        SceneManager.LoadScene("ResultScene");
+    }
 
-        int nextindex  = (Camera_index + 1) % Cameras.Length;
-        for(int i = 0; i < Cameras.Length; i++)
-        {
-            Cameras[i].gameObject.SetActive(i == nextindex);
-        }
-        Camera_index = nextindex;
-        Debug.Log("Camera :" + Camera_index + " is Active");
-
-        yield return StartCoroutine(FadeTo(0f, Fade_duration));
-
-        Is_Switching = false;
-
-        if(nextindex == 0)
-        {
-            yield return StartCoroutine(FadeTo(1f, Fade_duration));
-            SceneManager.LoadScene("ResultScene");
-        }
+    public void Quit_Game()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;  // エディタの再生モードを停止
+#else
+            Application.Quit();  // ビルド環境でアプリケーションを終了
+#endif
     }
 
     //FadeObjectを生成し、最背面に移動するもの
@@ -115,7 +100,4 @@ public class SwitchCamera : MonoBehaviour
 
         Fade_Image.transform.SetAsFirstSibling();
     }
-
-
-
 }
