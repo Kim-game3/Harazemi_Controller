@@ -1,3 +1,4 @@
+//Master側
 //XIAOのMacアドレス:10:51:db:1a:c0:fc
 
 #include"ESPNowEz.h"
