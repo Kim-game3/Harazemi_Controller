@@ -38,12 +38,6 @@ public class MoveScene : MonoBehaviour
         SceneManager.LoadScene(Scene_Name);
     }
 
-    public IEnumerator Move_MaintoResult()
-    {
-        yield return StartCoroutine(FadeTo(1f, Load_Time));
-        SceneManager.LoadScene("ResultScene");
-    }
-
     public void Quit_Game()
     {
 #if UNITY_EDITOR
