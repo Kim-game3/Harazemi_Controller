@@ -3,7 +3,7 @@
 
 #include"ESPNowEz.h"
 
-#define FAN_PIN 0
+#define FAN_PIN 5
 
 CESPNowEZ espnow(0);
 
@@ -51,7 +51,10 @@ void loop()
   }*/
 
   digitalWrite(FAN_PIN, HIGH);
+
   delay(1000);
+
   digitalWrite(FAN_PIN, LOW);
+
   delay(1000);
 }

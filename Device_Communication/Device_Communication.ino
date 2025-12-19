@@ -35,7 +35,7 @@ int Device_button(int pin)
   static bool Was_pressed = false;
   static unsigned long Press_time = 0;
 
-  bool Is_pressed = digitalRead(pin);
+  bool Is_pressed = (digitalRead(pin) == HIGH);
 
   if(Is_pressed && !Was_pressed)
   {
@@ -55,7 +55,14 @@ int Device_button(int pin)
     unsigned long Press_duration = millis() - Press_time;
     Was_pressed = false;
 
-    return(Press_duration > LONG_PRESS) ? 2:1;
+    if(Press_duration >= LONG_PRESS)
+    {
+      return 2;
+    }
+    else
+    {
+      return 1;
+    }
   }
 
   return 0;
