@@ -13,6 +13,15 @@ public class SwitchCamera : MonoBehaviour
     [Tooltip("切り替えた時のフェードイン/アウトにかかる時間")]
     [SerializeField] private float Fade_duration;
 
+    [Header("アニメーション関連")]
+    [SerializeField] Animator WatchAnimator;
+
+    [SerializeField] string WatchStateName;
+
+    [SerializeField] bool WaitForStateEntry = true;
+
+    [SerializeField] float AnimationWaitTimeout = 5f;
+
     private int Camera_index;
 
     private bool Is_Switching;
@@ -48,6 +57,11 @@ public class SwitchCamera : MonoBehaviour
     {
         Is_Switching = true;
 
+        if(WatchAnimator != null && !string.IsNullOrEmpty(WatchStateName))
+        {
+            yield return StartCoroutine(WaitUntilAnimationFinished(WatchAnimator, WatchStateName, WaitForStateEntry, AnimationWaitTimeout));
+        }
+        //フェードインする所
         yield return StartCoroutine(FadeTo(1f, Fade_duration));
 
         int nextindex  = (Camera_index + 1) % Cameras.Length;
@@ -58,6 +72,7 @@ public class SwitchCamera : MonoBehaviour
         Camera_index = nextindex;
         Debug.Log("Camera :" + Camera_index + " is Active");
 
+        //フェードアウトする所
         yield return StartCoroutine(FadeTo(0f, Fade_duration));
 
         Is_Switching = false;
@@ -66,6 +81,60 @@ public class SwitchCamera : MonoBehaviour
         {
             yield return StartCoroutine(FadeTo(1f, Fade_duration));
             SceneManager.LoadScene("ResultScene");
+        }
+    }
+    ///<summary>
+    /// Animator の指定ステートが再生完了するまで待つコルーチン。
+    /// WaitForStateEntry が true の場合はステートに入るまで待ってから完了を待つ。
+    /// false の場合は現在のステートに対して完了を待つ（既に別のステートにいる場合は即終了する可能性あり）。
+    /// タイムアウトを超えたら処理を続行する。
+    /// </summary>
+    private IEnumerator WaitUntilAnimationFinished(Animator animator, string stateName, bool waitForentry, float timeout)
+    {
+        if(animator == null || string.IsNullOrEmpty(stateName))
+        {
+           yield break;
+        }
+
+        float startTime = Time.unscaledTime;
+
+        bool useTimeout = timeout > 0f;
+
+        if(waitForentry)
+        {
+            while(!animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
+            {
+                if(useTimeout && Time.unscaledTime - startTime > timeout)
+                {
+                    Debug.LogWarning($"WaitUntilAnimationFinished: timeout waiting for state entry '{stateName}'.");
+                    yield break;
+                }
+                yield return null;
+            }
+        }
+
+        while(true)
+        {
+            var info = animator.GetCurrentAnimatorStateInfo(0);
+            if(info.IsName(stateName))
+            {
+                if(info.normalizedTime >= 1f)
+                {
+                    yield break;
+                }
+            }
+            else
+            {
+                yield break;
+            }
+
+            if(useTimeout && Time.unscaledTime - startTime > timeout)
+            {
+                Debug.LogWarning($"WaitUntilAnimationFinished: timeout waiting for state completion '{stateName}'.");
+                yield break;
+            }
+
+            yield return null;
         }
     }
 
