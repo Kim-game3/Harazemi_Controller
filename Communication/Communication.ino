@@ -53,7 +53,7 @@ void loop()
   if(outputFlag)
   {
     outputFlag = 0;
-    Serial.printf("SE\n" );
+    Serial.printf(deviceData.datas);
   }
   
   
