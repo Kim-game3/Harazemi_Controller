@@ -1,17 +1,20 @@
 //Master側
 //XIAOのMacアドレス:10:51:db:1a:c0:fc
 
-#include"ESPNowEz.h"
+//#include"ESPNowEz.h"
 
 #define FAN_PIN 5
 
-CESPNowEZ espnow(0);
+//CESPNowEZ espnow(0);
 
-uint8_t DeviceMacAddr[] = {0x34, 0xb7, 0xda, 0xf2, 0x2a, 0x8c };
+//uint8_t DeviceMacAddr[] = {0x34, 0xb7, 0xda, 0xf2, 0x2a, 0x8c };
 
-ESPNOW_Con2DevData ControllerData;
+//ESPNOW_Con2DevData ControllerData;
 
-int outputFlag;
+char outputtext[11];
+
+
+//int outputFlag;
 
 /*void onDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)
 {
@@ -25,11 +28,11 @@ void setup()
   // put your setup code here, to run once:
   //espnow.Initialize(OnDataReceived);
 
-  espnow.SetDeviceMacAddr(DeviceMacAddr);
+  //espnow.SetDeviceMacAddr(DeviceMacAddr);
 
   pinMode(FAN_PIN, OUTPUT);
 
-  outputFlag = 0;
+  //outputFlag = 0;
 
   Serial.begin(115200);
 }
@@ -49,12 +52,16 @@ void loop()
     outputFlag = 0;
     Serial.printf("SE\n", );
   }*/
+  
+  int a = 8;
+  int b = 9;
 
-  digitalWrite(FAN_PIN, HIGH);
+  sprintf(outputtext, "%d%d", a, b);
 
-  delay(1000);
+  Serial.println(outputtext);
 
-  digitalWrite(FAN_PIN, LOW);
+  delay(10);
 
-  delay(1000);
+
+
 }
