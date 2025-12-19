@@ -14,6 +14,7 @@
 #define MPU6050_GY  0x45
 #define MPU6050_GZ  0x47
 #define LED_PIN 4
+#define BUZZER_PIN 5
 #define SW_PIN 7
 #define DELAY_TIME 10
 #define LONG_PRESS 1000

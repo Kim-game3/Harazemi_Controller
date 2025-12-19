@@ -26,6 +26,7 @@ typedef struct struct_esp_now_d2c_data {
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
     bool startflag;
+    bool buzzerflag;
 } ESPNOW_Con2DevData;
 
 #endif
