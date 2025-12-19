@@ -43,20 +43,18 @@ void setup()
 void loop()
 {
   // put your main code here, to run repeatedly:
-    /*if(Serial.available() > 0)
+    if(Serial.available() > 0)
   {
-    inputChar = Serial.read();
-    ControllerData.cmd = inputChar;
+    ControllerData.start = 1;
+    ControllerData.buzzer = 1;
     espnow.Send(1, &ControllerData, sizeof(ControllerData)); // id:1に送る
-  }*/
+  }
 
   if(outputFlag)
   {
     outputFlag = 0;
     Serial.printf(deviceData.datas);
   }
-  
-  
 
   sprintf(outputtext, deviceData.datas);
 

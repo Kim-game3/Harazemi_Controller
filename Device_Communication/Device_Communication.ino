@@ -27,14 +27,24 @@ short int GyroX, GyroY, GyroZ;
 
 CESPNowEZ espnow(1);
 
+ESPNOW_Con2DevData Controllerdata;
 ESPNOW_Dev2ConData DeviceData;
 MovingAverage ma(maN);
 
 uint8_t ControllerAddress[] = {0x10, 0x51, 0xdb, 0x1a, 0xc0, 0xfc};
 
+int deviceflag;
+
 void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data_len)
 {
-  
+  memcpy(&Controllerdata, data, data_len);
+  deviceflag = 1;
+
+  if(Controllerdata.buzzer)
+  {
+    Sound_Buzzer(BUZZER_PIN);
+  }
+
 }
 
 //ボタンが長押しされたかどうかを判別する関数
@@ -100,7 +110,22 @@ int Measure_Speed()
 
 void Sound_Buzzer(int pin)
 {
+  int notes[] = {659, 784, 1047};  // ミ → ソ → 高ド
+  int times[] = {100, 100, 200};
   
+  int count = 0;
+
+  for (int i = 0; i < 3; i++) {
+    if(count > 3)
+    {
+      break;
+    }
+    tone(pin, notes[i]);
+    delay(times[i]);
+
+    count++;
+  }
+  noTone(pin);
 }
 
 void setup() {
