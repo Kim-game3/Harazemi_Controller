@@ -33,7 +33,7 @@ void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data
 int Device_button(int pin)
 {
   static bool Was_pressed = false;
-  stasic unsigned long Press_time = 0;
+  static unsigned long Press_time = 0;
 
   bool Is_pressed = digitalRead(pin);
 
@@ -55,18 +55,16 @@ int Device_button(int pin)
     unsigned long Press_duration = millis() - Press_time;
     Was_pressed = false;
 
-    if(Press_duration >= LONG_PRESS)
-    {
-      return 2;
-    }
-    else
-    {
-      return 1;
-    }
+    return(Press_duration > LONG_PRESS) ? 2:1;
   }
 
   return 0;
   
+}
+
+void Measure_Speed()
+{
+
 }
 
 void setup() {
@@ -88,8 +86,10 @@ void loop() {
 
   int Button_result = Device_button(SW_PIN);
 
-  sprintf(DeviceData.datas,);
+  //sprintf(DeviceData.datas,);
   espnow.Send(&DeviceData, sizeof(DeviceData));
+  
+  if(Button_result > 0)Serial.println(Button_result);
 
   delay(DELAY_TIME);
 }
