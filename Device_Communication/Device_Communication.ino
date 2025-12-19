@@ -98,6 +98,11 @@ int Measure_Speed()
   return AccX_ma;
 }
 
+void Sound_Buzzer(int pin)
+{
+  
+}
+
 void setup() {
   // put your setup code here, to run once:
   espnow.Initialize(OnDataReceived);
@@ -105,6 +110,7 @@ void setup() {
   espnow.SetControllerMacAddr(ControllerAddress);
 
   pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
   pinMode(SW_PIN, INPUT_PULLUP);
 
   Serial.begin(115200);

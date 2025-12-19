@@ -25,8 +25,8 @@ typedef struct struct_esp_now_d2c_data {
 // の6バイトを送る
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
-    bool startflag;
-    bool buzzerflag;
+    uint8_t start;
+    uint8_t buzzer;
 } ESPNOW_Con2DevData;
 
 #endif
