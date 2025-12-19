@@ -15,8 +15,7 @@
 // の2バイトを送る
 typedef struct struct_esp_now_d2c_data {
     uint8_t id; // 必ず被らないこと
-    bool startflag;
-    
+    char datas[11];
 } ESPNOW_Dev2ConData;
 
 // この例ではコントローラーからデバイスに、
@@ -26,7 +25,7 @@ typedef struct struct_esp_now_d2c_data {
 // の6バイトを送る
 typedef struct struct_esp_now_c2d_data {
     uint8_t id; // 必ず被らないこと
-    char datas[11];
+    bool startflag;
 } ESPNOW_Con2DevData;
 
 #endif

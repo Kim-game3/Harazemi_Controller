@@ -18,9 +18,16 @@
 #define DELAY_TIME 10
 #define LONG_PRESS 1000
 
+const int maN = 50;
+
+short int AccX, AccY, AccZ;
+short int Temp;
+short int GyroX, GyroY, GyroZ;
+
 CESPNowEZ espnow(1);
 
 ESPNOW_Dev2ConData DeviceData;
+MovingAverage ma(maN);
 
 uint8_t ControllerAddress[] = {0x10, 0x51, 0xdb, 0x1a, 0xc0, 0xfc};
 
@@ -69,9 +76,25 @@ int Device_button(int pin)
   
 }
 
-void Measure_Speed()
+int Measure_Speed()
 {
+  Wire.beginTransmission(MPU6050_ADDR);
+  Wire.write(MPU6050_AX);
+  Wire.endTransmission(); 
 
+  Wire.requestFrom(MPU6050_ADDR, 14);
+
+  AccX = Wire.read() << 8;  AccX |= Wire.read();
+  AccY = Wire.read() << 8;  AccY |= Wire.read();
+  AccZ = Wire.read() << 8;  AccZ |= Wire.read();
+  Temp = Wire.read() << 8;  Temp |= Wire.read();  //  (Temp-12421)/340.0 [degC]
+  GyroX = Wire.read() << 8; GyroX |= Wire.read();
+  GyroY = Wire.read() << 8; GyroY |= Wire.read();
+  GyroZ = Wire.read() << 8; GyroZ |= Wire.read();
+
+  int AccX_ma = ma.Add(AccX);
+
+  return AccX_ma;
 }
 
 void setup() {
@@ -84,19 +107,29 @@ void setup() {
   pinMode(SW_PIN, INPUT_PULLUP);
 
   Serial.begin(115200);
+
+  Wire.begin();
+
+  Wire.beginTransmission(MPU6050_ADDR);
+  Wire.write(0x6B);
+  Wire.write(0);
+  Wire.endTransmission();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  digitalWrite(LED_PIN, HIGH);
+  
   DeviceData.id = espnow.ID();
-
+  
+  int Value = Measure_Speed();
   int Button_result = Device_button(SW_PIN);
 
-  //sprintf(DeviceData.datas,);
+  sprintf(DeviceData.datas, "S%+06dE%d", Value, Button_result);
+  Serial.println(DeviceData.datas);
   espnow.Send(&DeviceData, sizeof(DeviceData));
   
-  if(Button_result > 0)Serial.println(Button_result);
+  //if(Button_result > 0)Serial.println(Button_result);
 
   delay(DELAY_TIME);
 }
