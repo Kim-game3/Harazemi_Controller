@@ -56,5 +56,7 @@ public class DoSomething : MonoBehaviour
         //receivedData = message.Substring(1, 1);というようにやると一文字ずつデコードできる。前の数字を増やせば次の文字になる
         string receivedData;
         int t;
+
+        Debug.Log("Received message: " + message);
     }
 }
