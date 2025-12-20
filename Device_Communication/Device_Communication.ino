@@ -154,12 +154,14 @@ void loop() {
   
   DeviceData.id = espnow.ID();
   
-  int Value = Measure_Speed();
-  int Button_result = Device_button(SW_PIN);
-
-  sprintf(DeviceData.datas, "S%+06dE%d", Value, Button_result);
-  Serial.println(DeviceData.datas);
-  espnow.Send(&DeviceData, sizeof(DeviceData));
+  if(Controllerdata.start)
+  {
+    int Value = Measure_Speed();
+    sprintf(DeviceData.datas, "S%+06dE%d", Value);
+    //Serial.println(DeviceData.datas);
+    espnow.Send(&DeviceData, sizeof(DeviceData));
+  }
+  
   
   //if(Button_result > 0)Serial.println(Button_result);
 

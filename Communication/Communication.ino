@@ -45,8 +45,8 @@ void loop()
   // put your main code here, to run repeatedly:
     if(Serial.available() > 0)
   {
-    ControllerData.start = 1;
-    ControllerData.buzzer = 1;
+    inputChar = Serial.read();
+    if(inputChar == 'A')
     espnow.Send(1, &ControllerData, sizeof(ControllerData)); // id:1に送る
   }
 
