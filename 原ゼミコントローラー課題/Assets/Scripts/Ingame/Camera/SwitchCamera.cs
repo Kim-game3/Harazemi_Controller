@@ -31,6 +31,8 @@ public class SwitchCamera : MonoBehaviour
 
     private Canvas CurrentCanvas;
 
+    public bool SecondSw = false;
+
     private void Awake()
     {
         Camera_index = 0;
@@ -57,10 +59,10 @@ public class SwitchCamera : MonoBehaviour
     {
         Is_Switching = true;
 
-        if(WatchAnimator != null && !string.IsNullOrEmpty(WatchStateName))
+        /*if(WatchAnimator != null && !string.IsNullOrEmpty(WatchStateName))
         {
             yield return StartCoroutine(WaitUntilAnimationFinished(WatchAnimator, WatchStateName, WaitForStateEntry, AnimationWaitTimeout));
-        }
+        }*/
         //フェードインする所
         yield return StartCoroutine(FadeTo(1f, Fade_duration));
 
@@ -71,6 +73,11 @@ public class SwitchCamera : MonoBehaviour
         }
         Camera_index = nextindex;
         Debug.Log("Camera :" + Camera_index + " is Active");
+
+        if(Camera_index == 1)
+        {
+            SecondSw = true;
+        }
 
         //フェードアウトする所
         yield return StartCoroutine(FadeTo(0f, Fade_duration));
@@ -83,7 +90,7 @@ public class SwitchCamera : MonoBehaviour
             SceneManager.LoadScene("ResultScene");
         }
     }
-    ///<summary>
+    /*///<summary>
     /// Animator の指定ステートが再生完了するまで待つコルーチン。
     /// WaitForStateEntry が true の場合はステートに入るまで待ってから完了を待つ。
     /// false の場合は現在のステートに対して完了を待つ（既に別のステートにいる場合は即終了する可能性あり）。
@@ -136,7 +143,7 @@ public class SwitchCamera : MonoBehaviour
 
             yield return null;
         }
-    }
+    }*/
 
     //FadeObjectを生成し、最背面に移動するもの
     public void Initialize_Fade()

@@ -1,36 +1,66 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_Swing : MonoBehaviour
 {
-    [SerializeField] Animator Player_animator;
+    private Animator animator;
 
-    [SerializeField] string Trigger_Name = "Swing";
+    Windmill windmill;
 
-    private bool Has_Played;
-    public void Play_Animation()
+    public int[] Value;
+
+    private int value;
+    private int prevalue;
+    private void Start()
     {
-        if(!Has_Played)
+        animator = gameObject.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        var current = Keyboard.current;
+
+        var space = current.spaceKey;
+        Comparevalue();
+
+        if(space.wasPressedThisFrame)
         {
-            Play_once();
+            PlaySwing();
         }
     }
 
-    private void Play_once()
+    private void Comparevalue()
     {
-        if(Player_animator == null)
+        foreach (int v in Value)
         {
-            Debug.LogWarning("Animator is not attached!");
-            return;
+            value = value * 10 + v;
         }
 
-        Player_animator.ResetTrigger(Trigger_Name);
-        Player_animator.SetTrigger(Trigger_Name);
 
-        Has_Played = true;
+        if (value != prevalue)
+        {
+            PlaySwing();
+        }
+
+        prevalue = value;
     }
 
-    public void Reset_flag()
+    private void PlaySwing()
     {
-        Has_Played = false;
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+
+        animator.SetBool("Swing", true);
+
+        if(state.IsName("Baseball_Swing") && state.normalizedTime >= 1.0f)
+        {
+            PlayWindmill();
+        }
+    }
+
+    private void PlayWindmill()
+    {
+        animator.SetBool("Swing", false);
+
+        windmill.StartRotate();
     }
 }

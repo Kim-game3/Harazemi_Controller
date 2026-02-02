@@ -47,6 +47,13 @@ void loop()
   {
     inputChar = Serial.read();
     if(inputChar == 'A')
+    {
+      ControllerData.buzzer = 1;
+    }
+    else if(inputChar == 'B')
+    {
+      ControllerData.start = 1;
+    }
     espnow.Send(1, &ControllerData, sizeof(ControllerData)); // id:1に送る
   }
 

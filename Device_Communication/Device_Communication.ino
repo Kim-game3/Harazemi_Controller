@@ -40,7 +40,7 @@ void OnDataReceived(const esp_now_recv_info* info, const uint8_t* data, int data
   memcpy(&Controllerdata, data, data_len);
   deviceflag = 1;
 
-  if(Controllerdata.buzzer)
+  if(Controllerdata.buzzer == 1)
   {
     Sound_Buzzer(BUZZER_PIN);
   }
@@ -154,10 +154,10 @@ void loop() {
   
   DeviceData.id = espnow.ID();
   
-  if(Controllerdata.start)
+  if(Controllerdata.start == 1)
   {
     int Value = Measure_Speed();
-    sprintf(DeviceData.datas, "S%+06dE%d", Value);
+    sprintf(DeviceData.datas, "S%+06dE", Value);
     //Serial.println(DeviceData.datas);
     espnow.Send(&DeviceData, sizeof(DeviceData));
   }
